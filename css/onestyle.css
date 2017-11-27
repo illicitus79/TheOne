@@ -76,7 +76,21 @@ a:active {
     text-decoration: underline;
 }
 
+label{
+    display:block;
+    margin-bottom:10px;
+}
 
+.barnum{
+    width:33.3%;
+    height:40px;
+    border-radius:3px;
+    border:1px solid silver;
+    font-size:20px;
+    padding:10px;
+    font-family:Oxygen,calibri,sans-serif;
+    src: local('Oxygen'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v5/LC4u_jU27qpsdszDEgeU_3-_kf6ByYO6CLYdB4HQE-Y.woff2) format('woff2');
+}
 
 @media only screen and (min-width: 600px) {
     /* For tablets: */
