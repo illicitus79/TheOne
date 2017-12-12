@@ -1,0 +1,245 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Bulk Barcode Generator | Free Online Barcode</title>
+	<meta name="description" content="Generate multiple barcodes and print it online. We have many type of symbology barcodes.  We have QR Code, EAN-13, UPC-A, ISBN, EAN-8, UPC-E, Interleaved 2 of 5, Standard 2 of 5, PostNet, Codabar, Code 128, Code 39, Code 93 and many more." />
+	<meta name="keywords" content="barcode, generator, free, online, barcode creator, barcode maker" />
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="color.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
+	<script src="js/arange.js"></script>
+	<script src="js/color.js"></script>
+
+</head>
+<body>
+<div class="main_container">
+
+	<div class="header">
+		<span class="span_h1">Barcode Generator</span>
+		<br/>
+		<a href="http://www.barcodez.net">http://www.barcodez.net</a>
+	</div>
+
+	<div class="menu">
+		<ul>
+			<li><a href="index.php">Barcode Generator</a></li>
+			<li><a href="bulk_qrcode_generator.php">Bulk QR Code</a></li>
+			<li><a href="bulk_code_128.php">Bulk Code 128 Barcode</a></li>
+			<li><a href="bulk_upc_barcode.php">Bulk UPC Barcode</a></li>
+			<li><a href="bulk_ean_barcode.php">Bulk EAN Barcode</a></li>
+		</ul>
+	</div>
+	<div style="clear:both"></div>
+	<div class="content">
+		
+	
+        <img src='images/barcode.gif' alt='barcode' align='left'>You can use this site to generate barcodes for free.
+        This site supports some types of barcodes, including EAN-13, UPC-A, ISBN, EAN-8, UPC-E, I25, S205, POSTNET, CODABAR, CODE128, CODE39, CODE93, and <a href='bulk_qrcode_generator.php'>QR Code</a>.
+        <br/><br/>
+        Common Barcode rules:
+        <ul>
+        
+        <li>EAN-13: Maximum 13 characters</li>
+        <li>UPC-A: Maximum 12 characters</li>
+        <li>ISBN: Number must be 13 characters and start with 978</li>
+        <li>EAN-8: Maximum 8 characters</li>
+        <li>UPC-E: Maximum 12 characters</li>
+        
+        </ul>
+        
+        
+<script type="text/javascript">
+$(function() {
+        $( "#slider_height" ).slider(
+            {
+                value:60,
+                min: 10,
+                max: 200,
+                step: 5,
+                slide: function( event, ui ) {
+                $( "#barcode_height" ).val( ui.value );
+                }
+            }
+                                    );
+        
+        
+        $( "#slider_scale" ).slider(
+            {
+                value:3,
+                min: 1,
+                max: 10,
+                step: 1,
+                slide: function( event, ui ) {
+                $( "#barcode_scale" ).val( ui.value );
+                }
+            }
+                                    
+                                    );
+    });
+</script>
+
+
+<h1>Bulk Barcode Generator</h1>
+
+<form method="post" action="index.php">
+
+<table width="100%">
+    <tr valign="top">
+        <td width="40%">
+
+
+<b>Symblogy:</b>
+            <br/>
+            <small>(select barcode type)</small>
+            <br/>
+            <select name="symbology" class="select_text">
+<option value="EAN-13">EAN-13</option><option value="UPC-A">UPC-A</option><option value="ISBN" selected="selected">ISBN</option><option value="EAN-8">EAN-8</option><option value="UPC-E">UPC-E</option><option value="I25">Interleaved 2 of 5</option><option value="S205">Standard 2 of 5</option><option value="POSTNET">PostNet</option><option value="CODABAR">Codabar</option><option value="CODE128">Code 128</option><option value="CODE39">Code 39</option><option value="CODE93">Code 93</option>            </select>
+
+<br/><br/>
+            
+            
+            <b>Type your data, one code per line (max: 50 lines)</b>
+<textarea name="barcode_data" cols="30" rows="5" class="textarea_medium">9781234567891
+9781234567892
+9781234567893
+9781234567894</textarea>
+            
+        </td>
+        <td valign="top">
+            
+            
+            <div><b>Barcode Height:</b></div>
+            <div id="slider_height" class="slider"></div><div class="slider_value"><input type="text" value="60" class="small_form" name="barcode_height" id="barcode_height"/>px</div>
+            <div style="clear:both"></div>
+            <br/>
+            
+            <div><b>Barcode Scale:</b></div>
+            <div id="slider_scale" class="slider"></div><div class="slider_value"><input type="text" value="3" class="small_form" name="barcode_scale" id="barcode_scale"/></div>
+            <div style="clear:both"></div>
+            <br/>
+            
+            
+            <div><b>Barcode Color:</b></div>
+<div id="barcode_color_picker">
+
+        <select name="barcode_color" class="medium_form">
+            <option value='ffffff'>#ffffff</option><option value='ffccc9'>#ffccc9</option><option value='ffce93'>#ffce93</option><option value='fffc9e'>#fffc9e</option><option value='ffffc7'>#ffffc7</option><option value='9aff99'>#9aff99</option><option value='96fffb'>#96fffb</option><option value='cdffff'>#cdffff</option><option value='cbcefb'>#cbcefb</option><option value='cfcfcf'>#cfcfcf</option><option value='fd6864'>#fd6864</option><option value='fe996b'>#fe996b</option><option value='fffe65'>#fffe65</option><option value='fcff2f'>#fcff2f</option><option value='67fd9a'>#67fd9a</option><option value='38fff8'>#38fff8</option><option value='68fdff'>#68fdff</option><option value='9698ed'>#9698ed</option><option value='c0c0c0'>#c0c0c0</option><option value='fe0000'>#fe0000</option><option value='f8a102'>#f8a102</option><option value='ffcc67'>#ffcc67</option><option value='f8ff00'>#f8ff00</option><option value='34ff34'>#34ff34</option><option value='68cbd0'>#68cbd0</option><option value='34cdf9'>#34cdf9</option><option value='6665cd'>#6665cd</option><option value='9b9b9b'>#9b9b9b</option><option value='cb0000'>#cb0000</option><option value='f56b00'>#f56b00</option><option value='ffcb2f'>#ffcb2f</option><option value='ffc702'>#ffc702</option><option value='32cb00'>#32cb00</option><option value='00d2cb'>#00d2cb</option><option value='3166ff'>#3166ff</option><option value='6434fc'>#6434fc</option><option value='656565'>#656565</option><option value='9a0000'>#9a0000</option><option value='ce6301'>#ce6301</option><option value='cd9934'>#cd9934</option><option value='999903'>#999903</option><option value='009901'>#009901</option><option value='329a9d'>#329a9d</option><option value='3531ff'>#3531ff</option><option value='6200c9'>#6200c9</option><option value='343434'>#343434</option><option value='680100'>#680100</option><option value='963400'>#963400</option><option value='986536'>#986536</option><option value='646809'>#646809</option><option value='036400'>#036400</option><option value='34696d'>#34696d</option><option value='00009b'>#00009b</option><option value='303498'>#303498</option><option value='000000' selected='selected'>#000000</option><option value='330001'>#330001</option><option value='643403'>#643403</option><option value='663234'>#663234</option><option value='343300'>#343300</option><option value='013300'>#013300</option><option value='003532'>#003532</option><option value='010066'>#010066</option><option value='340096'>#340096</option>            
+        </select>
+
+</div>
+<div style="clear:both"></div>
+
+            <script>
+            jQuery('#barcode_color_picker select').colourPicker({
+    ico:    'images/color.gif', 
+    title:    false
+});
+            </script>
+            
+            
+<br/>
+<div><b>Background Color:</b></div>
+<div id="background_color_picker">
+
+        <select name="background_color" class="medium_form">
+            <option value='ffffff' selected='selected'>#ffffff</option><option value='ffccc9'>#ffccc9</option><option value='ffce93'>#ffce93</option><option value='fffc9e'>#fffc9e</option><option value='ffffc7'>#ffffc7</option><option value='9aff99'>#9aff99</option><option value='96fffb'>#96fffb</option><option value='cdffff'>#cdffff</option><option value='cbcefb'>#cbcefb</option><option value='cfcfcf'>#cfcfcf</option><option value='fd6864'>#fd6864</option><option value='fe996b'>#fe996b</option><option value='fffe65'>#fffe65</option><option value='fcff2f'>#fcff2f</option><option value='67fd9a'>#67fd9a</option><option value='38fff8'>#38fff8</option><option value='68fdff'>#68fdff</option><option value='9698ed'>#9698ed</option><option value='c0c0c0'>#c0c0c0</option><option value='fe0000'>#fe0000</option><option value='f8a102'>#f8a102</option><option value='ffcc67'>#ffcc67</option><option value='f8ff00'>#f8ff00</option><option value='34ff34'>#34ff34</option><option value='68cbd0'>#68cbd0</option><option value='34cdf9'>#34cdf9</option><option value='6665cd'>#6665cd</option><option value='9b9b9b'>#9b9b9b</option><option value='cb0000'>#cb0000</option><option value='f56b00'>#f56b00</option><option value='ffcb2f'>#ffcb2f</option><option value='ffc702'>#ffc702</option><option value='32cb00'>#32cb00</option><option value='00d2cb'>#00d2cb</option><option value='3166ff'>#3166ff</option><option value='6434fc'>#6434fc</option><option value='656565'>#656565</option><option value='9a0000'>#9a0000</option><option value='ce6301'>#ce6301</option><option value='cd9934'>#cd9934</option><option value='999903'>#999903</option><option value='009901'>#009901</option><option value='329a9d'>#329a9d</option><option value='3531ff'>#3531ff</option><option value='6200c9'>#6200c9</option><option value='343434'>#343434</option><option value='680100'>#680100</option><option value='963400'>#963400</option><option value='986536'>#986536</option><option value='646809'>#646809</option><option value='036400'>#036400</option><option value='34696d'>#34696d</option><option value='00009b'>#00009b</option><option value='303498'>#303498</option><option value='000000'>#000000</option><option value='330001'>#330001</option><option value='643403'>#643403</option><option value='663234'>#663234</option><option value='343300'>#343300</option><option value='013300'>#013300</option><option value='003532'>#003532</option><option value='010066'>#010066</option><option value='340096'>#340096</option>            
+        </select>
+
+</div>
+<div style="clear:both"></div>
+
+            <script>
+            jQuery('#background_color_picker select').colourPicker({
+    ico:    'images/color.gif', 
+    title:    false
+});
+            </script>
+            
+            
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+    <input type="submit" name="submit" value="Generate Barcode" style="width:200px;" />
+        </td>
+        
+    </tr>
+    
+    </table>
+
+</form>
+
+
+    <br/><br/>
+    <div style="border-top:1px solid #888888;">
+
+
+<script type="text/javascript">
+var infolinks_pid = 1740909;
+var infolinks_wsid = 2;
+</script>
+<script type="text/javascript" src="http://resources.infolinks.com/js/infolinks_main.js"></script>
+
+    
+    </div>
+    <br/>
+    <table width="100%" style="border-top:1px solid #888888;">
+                <tr> 
+                    <td> 
+			<a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> 
+                    </td> 
+		    <td style="padding-top:15px; padding-left: 15px;"> 
+			<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.barcodez.net&amp;send=false&amp;layout=box_count&amp;width=65&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:65px; height:80px;" allowTransparency="true"></iframe> 
+                    </td> 
+			
+		    <td> 
+                        
+			<!-- Place this tag where you want the +1 button to render --> 
+<g:plusone size="tall"></g:plusone> 
+ 
+<!-- Place this render call where appropriate --> 
+<script type="text/javascript"> 
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script> 
+                    </td> 
+                </tr>
+	    <tr>
+			<td colspan="3">
+				    <br/>
+				    
+			<input type="hidden" name="IL_IN_TAG" value="2"/>
+			</td>
+	    </tr>
+	    
+                
+            </table> 
+
+
+
+    
+    </div>
+    <div class="footer">&copy; 2008-2017. <a href="http://www.barcodez.net/">Bulk Barcode Generator</a>. All rights reserved.  Genera codice a barre.</div>
+</div>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48864541-3', 'barcodez.net');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
