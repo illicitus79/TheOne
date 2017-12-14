@@ -7,7 +7,7 @@
 function calculatecd(){
 
 	var barcodenum=document.getElementById("itmid").value;
-	var mynum=parseInt(barcodenum);
+	var mynum=barcodenum;
 	if(isNaN(mynum))
 	{
 		alert("Please enter the numerical values only");
@@ -32,10 +32,15 @@ function calculatecd(){
 
 		}
 		sum=10-(sum%10);
+		if(sum==10)
+		{
+			sum=0;
+		}
+		
 		// alert(barcodenum[0]);
 		// alert(barcodenum.length);
-		alert("Check digit is: "+sum);
-		document.getElementById("cditmid").value=barcodenum+sum;
+		// alert("Check digit is: "+sum);
+		document.getElementById("cditmid").innerHTML=barcodenum+"<span style=\"color:red;font-weight:bold;\">"+sum+"</span>";
 		document.getElementById("finbar").style.display="block";
 		JsBarcode("#barcode", barcodenum+sum);
 	    // ?alert("done");
@@ -51,42 +56,59 @@ function createbarcode()
 	}
 	else
 	{
-		for(var i = 0;i < lines.length;)
+		var isnumornot=0;
+		for (var j=0;j<lines.length;j++)
 		{
-			if(lines[i]!="")
+			if(isNaN(lines[j]))
 			{
-				if(i!=lines.length-1)
+				isnumornot=1;
+			}
+		}
+		// alert(isnumornot);
+		if(isnumornot==0)
+		{
+
+			for(var i = 0;i < lines.length;)
+			{
+				if(lines[i]!="")
 				{
-					document.getElementById("tblBarcde").innerHTML+="<tr><td><svg id=\"barcode"+i+"\"></svg></td><td><svg id=\"barcode"+(i+1)+"\"></svg></td></tr>";
-					JsBarcode("#barcode"+i, lines[i]);
-					JsBarcode("#barcode"+(i+1), lines[i+1]);
-					i=i+2;
+					if(i!=lines.length-1)
+					{
+						document.getElementById("tblBarcde").innerHTML+="<tr><td><svg id=\"barcode"+i+"\"></svg></td><td><svg id=\"barcode"+(i+1)+"\"></svg></td></tr>";
+						JsBarcode("#barcode"+i, lines[i]);
+						JsBarcode("#barcode"+(i+1), lines[i+1]);
+						i=i+2;
+					}
+					else
+					{
+						document.getElementById("tblBarcde").innerHTML+="<tr><td><svg id=\"barcode"+i+"\"></svg></td><td></td></tr>";
+						JsBarcode("#barcode"+i, lines[i]);
+						i++;
+					}
 				}
 				else
 				{
-					document.getElementById("tblBarcde").innerHTML+="<tr><td><svg id=\"barcode"+i+"\"></svg></td><td></td></tr>";
-					JsBarcode("#barcode"+i, lines[i]);
 					i++;
 				}
 			}
-			else
-			{
-				i++;
-			}
+			document.getElementById("printbtn").style.display="block";
+			document.getElementById("usrin").style.display="none";
+			document.getElementById("tblBarcde").style.display="block";
 		}
-		document.getElementById("printbtn").style.display="block";
-		document.getElementById("usrin").style.display="none";
-		document.getElementById("tblBarcde").style.display="block";
+		else
+		{
+			alert("Please enter numbers only");
+		}
 	}
 }
 
 
 function printdiv(){
-     var printContents = document.getElementById("barcgen").innerHTML;
-     var originalContents = document.body.innerHTML;
-     document.body.innerHTML = printContents;
-     window.print();
-     document.body.innerHTML = originalContents;
+	var printContents = document.getElementById("barcgen").innerHTML;
+	var originalContents = document.body.innerHTML;
+	document.body.innerHTML = printContents;
+	window.print();
+	document.body.innerHTML = originalContents;
 }
 
 
