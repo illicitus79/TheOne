@@ -47,9 +47,39 @@ function calculatecd(){
 	}
 }
 
+function returncd(bcde)
+{
+	var odd=0;
+	var sum=0;
+	for(var i=bcde.length-1;i>=0;i--)
+	{
+		if(odd==0)
+		{
+			sum=parseInt(sum) + parseInt((bcde[i]*3));
+			odd=1;
+		}
+		else
+		{
+			sum=parseInt(sum) + parseInt(bcde[i]);
+			odd=0;				
+		}
+			// alert(sum);
+
+		}
+		sum=10-(sum%10);
+		if(sum==10)
+		{
+			sum=0;
+		}
+		//alert(bcde+sum);
+		return bcde+sum;
+	}
+
 function createbarcode()
 {
 	var lines = document.getElementById("itminput").value.split("\n");
+	// var calcdfg=document.getElementById("fg_calcd").checked;
+ //    alert(calcdfg);
 	if(lines[0]=="")
 	{
 		alert("Please enter the Item Ids for generating barcodes");
@@ -67,7 +97,7 @@ function createbarcode()
 		// alert(isnumornot);
 		if(isnumornot==0)
 		{
-
+			// var barcodeno="";
 			for(var i = 0;i < lines.length;)
 			{
 				if(lines[i]!="")
@@ -75,14 +105,32 @@ function createbarcode()
 					if(i!=lines.length-1)
 					{
 						document.getElementById("tblBarcde").innerHTML+="<tr><td><svg id=\"barcode"+i+"\"></svg></td><td><svg id=\"barcode"+(i+1)+"\"></svg></td></tr>";
-						JsBarcode("#barcode"+i, lines[i]);
-						JsBarcode("#barcode"+(i+1), lines[i+1]);
+						//alert(document.getElementById("fg_calcd").checked);
+						if(document.getElementById("fg_calcd").checked)
+						{
+							//alert("mhere");
+							JsBarcode("#barcode"+i, returncd(lines[i]));
+							JsBarcode("#barcode"+(i+1), returncd(lines[i+1]));
+						}
+						else
+						{
+							JsBarcode("#barcode"+i, lines[i]);
+							JsBarcode("#barcode"+(i+1), lines[i+1]);
+						}
 						i=i+2;
 					}
 					else
 					{
 						document.getElementById("tblBarcde").innerHTML+="<tr><td><svg id=\"barcode"+i+"\"></svg></td><td></td></tr>";
-						JsBarcode("#barcode"+i, lines[i]);
+						if(document.getElementById("fg_calcd").checked)
+						{
+							JsBarcode("#barcode"+i, returncd(lines[i]));
+						}
+						else
+						{
+							JsBarcode("#barcode"+i, lines[i]);
+						}
+						
 						i++;
 					}
 				}
